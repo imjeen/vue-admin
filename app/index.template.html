@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>DEMO</title>
+        <!-- <link rel="icon" href="./favicon.ico" /> -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <!-- result style -->
+        <% for(var i=0; i < htmlWebpackPlugin.files.css.length; ++i){ %>
+        <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[i] %>" />
+        <% } %>
+    </head>
+
+    <body>
+        <div id="app">
+            <router-view>
+                <p style="padding: 5%; text-align: center">Loading...</p>
+            </router-view>
+        </div>
+
+        <!-- DLL -->
+        <script src="manifest/vendor_dll.js?v=20190104"></script>
+        <script src="manifest/svg_dll.js?v=20190221"></script>
+
+        <!-- result script -->
+        <% for(var i=0; i < htmlWebpackPlugin.files.js.length; ++i){ %>
+        <script src="<%= htmlWebpackPlugin.files.js[i] %>"></script>
+        <% } %>
+    </body>
+</html>

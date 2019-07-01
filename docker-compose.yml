@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+
+  web:
+    build:
+      context: .
+      dockerfile: /docker/web/Dockerfile
+    image: mplus/web:v1
+    container_name: mplus_cms_web
+    volumes:
+      - /usr/src/mplus/node_modules
+      - .:/usr/src/mplus
+
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    image: mplus/nginx:v1
+    container_name: mplus_cms_nginx
+    volumes:
+      - ./dev:/www
+    ports:
+       - "9000:80"
+

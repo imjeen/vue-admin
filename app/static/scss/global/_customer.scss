@@ -1,0 +1,42 @@
+html {
+    scroll-behavior: smooth;
+    font-family: 'PingFang SC', 'Helvetica Neue', 'Helvetica', 'Microsoft YaHei', 'STHeitiSC-Light', 'Arial', 'hiragino sans gb', tahoma, sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.cl {
+    *zoom: 1;
+
+    &:after {
+        content: '\200B';
+        display: block;
+        height: 0;
+        clear: both;
+    }
+}
+
+.g-ellipsis {
+    line-height: 1.5;
+    overflow: hidden;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical; /* no */
+
+    @for $i from 1 through (5) {
+        &__#{$i}-line {
+            -webkit-line-clamp: $i;
+        }
+    }
+}

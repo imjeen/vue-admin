@@ -1,0 +1,12 @@
+version: '3.6'
+
+services:
+    gitlab-runner:
+        image: gitlab/gitlab-runner:alpine-v1.11.4
+        container_name: gitlab-runner
+        working_dir: /etc/gitlab-runner/
+        restart: always
+        privileged: true
+        volumes:
+            - ../caches/runner:/etc/gitlab-runner
+            - /var/run/docker.sock:/var/run/docker.sock

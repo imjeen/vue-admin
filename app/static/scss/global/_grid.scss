@@ -1,0 +1,85 @@
+.g-row {
+    position: relative;
+    margin-left: 0;
+    margin-right: 0;
+    height: auto;
+    zoom: 1;
+    display: block;
+    &:before,
+    &:after {
+        content: '';
+        display: table;
+        width: 0;
+    }
+    &:after {
+        clear: both;
+        visibility: hidden;
+        font-size: 0;
+        height: 0;
+    }
+    // flex
+    &--flex {
+        display: flex;
+        // flex-direction: row;
+        // flex-wrap: wrap;
+        flex-flow: row wrap;
+        margin: 0 auto;
+
+        @each $justify in ('flex-start', 'flex-end', 'center', 'space-around', 'space-between') {
+            &.is-justify-#{$justify} {
+                justify-content: #{$justify};
+            }
+        }
+
+        @each $align in ('flex-start', 'center', 'flex-end', 'stretch') {
+            &.is-align-#{$align} {
+                align-items: #{$align};
+            }
+        }
+    }
+    // COL
+    .g-col {
+        float: left;
+    }
+}
+
+@mixin make-grid-col($size: false, $columns: $grid-columns) {
+    @for $i from 1 through $columns {
+        $tail: if($size, #{$size}-#{$i}, #{$i});
+        &__#{$tail} {
+            width: percentage($i / $columns);
+        }
+        &__order-#{$tail} {
+            order: $i;
+        }
+        &__offset-#{$tail} {
+            margin-left: percentage($i / $columns);
+        }
+        &__push-#{$tail} {
+            left: percentage($i / $columns);
+        }
+        &__pull-#{$tail} {
+            right: percentage($i / $columns);
+        }
+    }
+}
+
+@mixin make-grid-breakpoints-col($breakpoints: $grid-breakpoints) {
+    // 'xs', 'sm', 'md', 'lg', 'xl'
+    @media (max-width: map-get($breakpoints, 'sm')) {
+        @include make-grid-col('xs');
+    }
+    @each $breakpoint, $mix-width in $breakpoints {
+        @media (min-width: #{$mix-width}) {
+            @include make-grid-col($breakpoint);
+        }
+    }
+}
+
+.g-col {
+    box-sizing: border-box;
+    position: relative;
+
+    @include make-grid-col();
+    @include make-grid-breakpoints-col();
+}
