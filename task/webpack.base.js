@@ -16,12 +16,12 @@ let plugins = [
     new MiniCssExtractPlugin(
         commonConfig.is_release
             ? {
-                  filename: 'static/css/[name].[hash].css',
-                  chunkFilename: 'static/css/[name]_[id].[hash].css',
+                  filename: 'static/css/[name].[contenthash].css',
+                  chunkFilename: 'static/css/[name]_[id].[contenthash].css',
               }
             : {
-                  filename: 'static/css/[name].css',
-                  chunkFilename: 'static/css/[name].css',
+                  filename: 'static/css/[name].css?v=[contenthash]',
+                  chunkFilename: 'static/css/[name].css?v=[contenthash]&id=[id]',
               },
     ),
 ];

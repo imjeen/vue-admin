@@ -18,10 +18,6 @@
             </router-view>
         </div>
 
-        <!-- DLL -->
-        <script src="manifest/vendor_dll.js?v=20190104"></script>
-        <script src="manifest/svg_dll.js?v=20190221"></script>
-
         <!-- result script -->
         <% for(var i=0; i < htmlWebpackPlugin.files.js.length; ++i){ %>
         <script src="<%= htmlWebpackPlugin.files.js[i] %>"></script>

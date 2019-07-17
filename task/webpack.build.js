@@ -2,6 +2,7 @@ import path from 'path';
 import webpack from 'webpack';
 import merge from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import AddAssetHtmlPlugin from 'add-asset-html-webpack-plugin';
 import baseConfig from './webpack.base';
 import commonConfig from './common';
 
@@ -17,8 +18,8 @@ export default merge(baseConfig, {
 
     output: {
         path: path.resolve(__dirname, '../dist'),
-        filename: `static/js/${commonConfig.is_release ? '[name]_[hash].js' : '[name].js?[hash]'}`,
-        chunkFilename: `static/js/${commonConfig.is_release ? '[name]_[hash].js' : '[name].js?[hash]'}`, // just for the require.ensure
+        filename: `static/js/${commonConfig.is_release ? '[name]_[contenthash].js' : '[name].js?[contenthash]'}`,
+        chunkFilename: `static/js/${commonConfig.is_release ? '[name]_[contenthash].js' : '[name].js?[contenthash]'}`, // just for the require.ensure
     },
 
     plugins: [
@@ -36,6 +37,12 @@ export default merge(baseConfig, {
             filename: 'index.html',
             inject: false,
             // favicon: path.resolve(__dirname, '../favicon.ico'),
+        }),
+        new AddAssetHtmlPlugin({
+            // hash: true,
+            publicPath: 'manifest/',
+            outputPath: 'manifest/',
+            filepath: path.resolve(__dirname, '../dist/manifest/*.dll.js'),
         }),
     ],
 });
