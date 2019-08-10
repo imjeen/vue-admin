@@ -61,7 +61,7 @@ let module = {
                     options: {
                         // extract: true,
                         // spriteFilename: '',
-                        symbolId: '[name]_[hash]',
+                        symbolId: '[name]_[contenthash]',
                         // spriteModule: 'svg-sprite-loader/runtime/browser-sprite.build',
                     },
                 },
@@ -73,7 +73,7 @@ let module = {
                 {
                     loader: 'file-loader',
                     options: {
-                        name: '[path][name].[ext]?[hash:8]',
+                        name: '[path][name].[ext]?[contenthash]',
                         outputPath(url, resourcePath, context) {
                             let result_url = `${url.replace(/^(app\/)/, '')}`;
                             return result_url;
@@ -88,7 +88,7 @@ let module = {
                 {
                     loader: 'file-loader',
                     options: {
-                        name: '[path][name].[ext]?[hash:8]',
+                        name: '[path][name].[ext]?[contenthash]',
                         outputPath(url, resourcePath, context) {
                             let result_url = `${url.replace(/^(app\/)/, '')}`;
                             return result_url;
