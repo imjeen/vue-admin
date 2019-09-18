@@ -13,7 +13,8 @@
     "watch": "npm run clean && npm run _dll && npm run _build:watch",
     "watch:test": "DEPLOY_ENV=test npm run watch",
     "analyzer": "npm run clean && npm run _dll && npx -n '-r @babel/register' webpack --config './task/analyzer.js' --progress",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy:github": "sh ./scripts/deploy.sh"
   },
   "author": "",
   "license": "ISC",
