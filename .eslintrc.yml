@@ -1,0 +1,53 @@
+---
+root: true
+globals:
+parser: babel-eslint
+parserOptions:
+    sourceType: module
+env:
+    browser: true
+extends: standard
+
+plugins:
+    - html
+settings:
+    html/html-extensions:
+        - '.html'
+
+# 0 = off, 1 = warn, 2 = error
+rules:
+    # 强制在 function的左括号之前使用一致的空格
+    space-before-function-paren: off
+    # 使用严格模式指令: 在脚本或函数体开始位置放置一个 "use strict" 字面量
+    strict: off
+    # 禁止出现未使用过的变量
+    no-unused-vars:
+        - warn
+        - args: none
+    # 未声明的变量
+    no-undef:
+        - error
+    prefer-const:
+        - warn
+        - destructuring: all
+    # 骆驼拼写法 (variableName)：关闭
+    camelcase:
+        - off
+        - properties: never
+    # 分号（ ; semicolons）
+    semi:
+        - error
+        - always
+    # 缩进
+    indent:
+        - error
+        - 4
+        - SwitchCase: 1
+    # 反勾号、双引号或单引号
+    quotes:
+        - off
+    # 末尾逗号
+    comma-dangle:
+        - warn
+        - arrays: always-multiline
+          objects: always-multiline

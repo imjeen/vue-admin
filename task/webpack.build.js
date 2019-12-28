@@ -25,11 +25,11 @@ export default merge(baseConfig, {
     plugins: [
         new webpack.DllReferencePlugin({
             context: '.',
-            manifest: require(path.resolve(__dirname, `../dist/manifest/vendor_dll.json`)),
+            manifest: require(path.resolve(__dirname, `../public/dll/vendor.json`)),
         }),
         new webpack.DllReferencePlugin({
             context: '.',
-            manifest: require(path.resolve(__dirname, `../dist/manifest/svg_dll.json`)),
+            manifest: require(path.resolve(__dirname, `../public/dll/svg.json`)),
         }),
         new HtmlWebpackPlugin({
             title: '',
@@ -40,9 +40,9 @@ export default merge(baseConfig, {
         }),
         new AddAssetHtmlPlugin({
             // hash: true,
-            publicPath: 'manifest/',
-            outputPath: 'manifest/',
-            filepath: path.resolve(__dirname, '../dist/manifest/*.dll.js'),
+            publicPath: 'dll/',
+            outputPath: 'dll/',
+            filepath: path.resolve(__dirname, '../public/dll/*.dll.js'),
         }),
     ],
 });
